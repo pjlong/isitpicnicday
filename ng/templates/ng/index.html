@@ -11,19 +11,21 @@
   <meta property="og:title" content="Is It Picnic Day?!"/>
   <meta proproty="og:type" content="website"/>
   <meta property="og:description" content="The site for any one wondering if it is currently Picnic Day"/>
-  <meta property="og:image" content=""/>
+  <meta property="og:image" content="{% static 'img/block_ca.png' %}"/>
   <meta property="og:url" content="http://isitpicnicday.com/"/>
 
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:creator" content="@phlongalong"/>
   <meta property="twitter:title" content="Is It Picnic Day?!"/>
   <meta property="twitter:description" content="The site for any one wondering if it is currently Picnic Day"/>
-  <meta property="twitter:image" content=""/>
+  <meta property="twitter:image" content="{% static 'img/block_ca.png' %}"/>
   <meta property="twitter:url" content="http://isitpicnicday.com"/>
 
+  
   <title ng-bind="PageTitle.get()"></title>
   <base href="/">
   
+  <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
   <link rel="stylesheet" href="{% static 'css/flipclock.css' %}">
   <link rel="stylesheet" href="{% static 'css/picnic_day.css' %}">
