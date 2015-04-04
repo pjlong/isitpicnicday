@@ -1,0 +1,20 @@
+@mixin mq($size) {
+  @if $size == mobile {
+    @media #{$mq-mobile} { @content; }
+  }
+  @elseif $size == tablet {
+    @media #{$mq-tablet} { @content; }
+  }
+  @elseif $size == desktop {
+    @media #{$mq-desktop} { @content; }
+  }
+  @elseif $size == mobile-only {
+    @media #{$mq-mobile-only} { @content; }
+  }
+  @elseif $size == min-tablet {
+    @media #{$mq-min-tablet} { @content; }
+  }
+  @elseif $size == min-desktop {
+    @media #{$mq-min-desktop} { @content; }
+  }
+}

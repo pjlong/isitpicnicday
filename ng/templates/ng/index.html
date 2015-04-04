@@ -21,7 +21,7 @@
   <meta property="twitter:image" content="http://isitpicnicday.com{% static 'img/twitter_block_ca.png' %}"/>
   <meta property="twitter:url" content="http://isitpicnicday.com"/>
 
-  <title ng-bind="PageTitle.get()"></title>
+  <title ng-bind="pageTitle.get()"></title>
   <base href="/">
   
   <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
@@ -34,16 +34,15 @@
   <!--[if lt IE 8]>
     <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-  <main ng-controller="picnicDayCtrl">
+  <main ng-controller="PicnicDayCtrl">
     <div class="picnic-day-message" ng-if="itsPicnicDay()" ng-cloak>
       <h1>IT'S PICNIC DAY!!!!!!!</h1>
     </div>
     <div class="picnic-day-message" ng-if="!itsPicnicDay()" ng-cloak>
-      <h1>No, it is not picnic day...</h1>
+      <h1><strong>No</strong>, it is not picnic day...</h1>
       <flip-clock countdown="picnicDayDate"></flip-clock>
     </div>
     <pd-audio>
-      Sorry, your browser does not support the <code>audio</code> element :/
       <source src="{% static 'audio/picnic_day_song.mp3' %}" type="audio/mpeg"></source>
     </pd-audio>
   </main>

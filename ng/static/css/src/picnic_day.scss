@@ -1,0 +1,120 @@
+@import "variables";
+@import "mixins";
+@import "base";
+
+.picnic-day-message {
+  box-sizing: border-box;
+  color: #232323;
+  display: inline-block;
+  padding: 0 15px;
+  text-align: center;
+  width: 100%;
+
+  > h1 {
+    font-size: 48px;
+    font-weight: 700;
+  }
+
+  @include mq(min-desktop) {
+
+    > h1 {
+      font-size: 76px;
+    }
+  }
+}
+
+.flip-clock-wrapper {
+  display: inline-block;
+  padding-top: 2em;
+  width: auto;
+  
+  @include mq(mobile-only) {
+    margin-left: 2em;
+    margin-right: 0;
+  }
+
+  ul {
+    @include mq(mobile-only) {
+      font-size: 55px;
+      height: 75px;
+      line-height: 75px;
+      width: 45px;
+    }
+
+    @include mq(min-tablet) {
+      font-size: 120px;
+      height: 135px;
+      line-height: 135px;
+      width: 95px;
+
+      li a div.up::after {
+        top: 70px;
+      }
+    }
+
+    li {
+      line-height: inherit;
+      a {
+        div {
+          font-size: inherit;
+          div.inn {
+            font-size: inherit;
+          }
+        }
+      }
+    }
+  }
+}
+
+.flip {
+  &-clock {  
+    &-divider {
+      @include mq(mobile-only) {
+        .flip-clock-label {
+          font-size: 14px;
+          right: -72px;
+          top: -1.25em;
+        }
+
+        &.minutes {
+          visibility: hidden;
+
+          .flip-clock-label {
+            display: none;
+          }
+        }
+
+        &.seconds{
+          .flip-clock-label {
+            right: -80px;
+          }
+          
+          &::before {
+            content: "Minutes";
+            font-size: 14px;
+            position: absolute;
+            top: -1.25em;
+            right: 50px;
+          }
+        }
+      }
+
+      @include mq(min-tablet) {
+        height: 125px;
+
+        .flip-clock-label {
+          font-size: 24px;
+          right: -132px;
+        }
+
+        &.minutes .flip-clock-label {
+          right: -147px;
+        }
+    
+        &.seconds .flip-clock-label {
+          right: -150px;
+        }
+      }
+    }
+  }
+}
