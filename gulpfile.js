@@ -1,17 +1,16 @@
 var gulp = require('gulp'),
-  sass = require('gulp-sass'),
-  sourcemaps = require('gulp-sourcemaps'),
+  autoprefixer = require('gulp-autoprefixer'),
   concat = require('gulp-concat'),
+  ngAnnotate = require('gulp-ng-annotate'),
+  sass = require('gulp-sass'),
   plumber = require('gulp-plumber'),
-  autoprefixer = require('gulp-autoprefixer');
+  uglify = require('gulp-uglify');
 
-/* 
-//keep around just in case structure changes
 var paths = {
   css: {
-    src: './ng/static/css/src/',
-    dist: './ng/static/css/dist/',
-    libs:'./ng/static/css/libs/'
+    src: 'ng/static/css/src/',
+    dist: 'ng/static/css/dist/',
+    libs:'ng/static/css/libs/'
   },
   js: {
     src: 'ng/static/js/src/',
@@ -19,46 +18,35 @@ var paths = {
     libs: 'ng/static/js/libs/'
   }
 };
-*/
 
-var paths = {
-  css: {
-    src: 'ng/static/',
-    dist: 'ng/static/',
-    libs:'ng/static/'
-  },
-  js: {
-    src: 'ng/static/',
-    dist: 'ng/static/',
-    libs: 'ng/static/'
-  }
-};
-
+var cssFiles = [paths.css.libs + '*.css', paths.css.src + '*.scss'];
+var jsFiles = [paths.js.libs + '*.js', paths.js.src + '*.js'];
 
 gulp.task('sass', function () {
-  return gulp.src(paths.css.src+'**/*.scss')
+  return gulp.src(cssFiles)
     .pipe(plumber())
-    .pipe(sass())
+    .pipe(sass({
+      outputStyle: 'compressed'
+    }))
     .pipe(autoprefixer({
       browers: ['last 2 versions'],
       cascade: false
     }))
+    .pipe(concat('isitpicnicday.css'))
     .pipe(gulp.dest(paths.css.dist));
 });
 
-
 gulp.task('js', function () {
-  return gulp.src(paths.js.src+'**/*.js')
-    .pipe(sourcemaps.init())
-    .pipe(concat('pjlong.js'))
-    .pipe(sourcemaps.write())
+  return gulp.src(jsFiles)
+    .pipe(ngAnnotate())
+    .pipe(concat('isitpicnicday.js'))
+    .pipe(uglify({mangle: true, compress: true}))
     .pipe(gulp.dest(paths.js.dist));
 });
 
-
-gulp.task('watch', function () {
-  gulp.watch(paths.css.src+'**/*.scss', ['sass']);
-  gulp.watch(paths.js.src+'**/*.js', ['js']);
+gulp.task('watch', ['default'], function () {
+  gulp.watch(paths.css.src + '*.scss', ['sass']);
+  gulp.watch(paths.js.src + '*.js', ['js']);
 });
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'js']);
