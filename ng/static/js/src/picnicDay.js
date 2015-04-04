@@ -101,7 +101,6 @@
 
                             audioEl.get(0).volume = volume;
                             volume += 0.05;
-                            console.debug(volume);
                         }, 1000);
                     }, 5000);
                 }
