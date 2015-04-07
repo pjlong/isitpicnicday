@@ -24,7 +24,8 @@
          */
         $scope.picnicDayDate = new Date (2015, 03, 18, 0, 0, 0);
         $scope.today = new Date();
-        $scope.itsPicnicDay = itsPicnicDay; 
+        $scope.bgOpacity = bgOpacity;
+        $scope.itsPicnicDay = itsPicnicDay;
 
         _routeQueryParams();
 
@@ -40,6 +41,23 @@
                     $location.search().__itsPicnicDay == "true") {
                 $scope.today = $scope.picnicDayDate;
             }            
+        }
+
+        function _daysUntilPicnicDay () {
+            return moment($scope.picnicDayDate).diff(moment(), 'days');
+        }
+
+        function bgOpacity () {
+            var daysUntil = _daysUntilPicnicDay(),
+                pdSeasonCutoff = 21; //3 weeks
+
+            if (daysUntil === 0) {
+                return 1;
+            } else if (daysUntil < pdSeasonCutoff && daysUntil !== 0) {
+                return 0.5 * ((pdSeasonCutoff - daysUntil + 1) / pdSeasonCutoff);
+            } else {
+                return 0;
+            }
         }
 
         /**
@@ -71,38 +89,32 @@
 
     /* @ngInject */
     function pdAudio ($interval, $timeout) {
-        var template = '<audio loop><div ng-transclude></div></audio>' +
-            '<div class="audio-control"><button ng-click="playPause();"></button></div>';
-
         return {
-            restrict: 'E',
-            template: template,
-            transclude: 'true',
+            restrict: 'A',
             link: function (scope, el, attrs, ctrl, transclude) {
-                el.find('[ng-transclude]').replaceWith(transclude());
-
-                var audioEl = el.find('audio'),
-                    volume = 0,
+                console.log('audio');
+                var volume = 0,
                     volIncrease;
 
-                audioEl.get(0).volume = 0;
-                audioEl.get(0).oncanplaythrough = startMadness;
+                el[0].volume = 0;
+                el[0].oncanplaythrough = startMadness;
 
                 function startMadness () {
                     var _this = this;
 
-                    _this.play();
                     $timeout(function () {
+                        _this.play();
+
                         volIncrease = $interval(function () {
                             if (volume >= 1) {
                                 $interval.cancel(volIncrease);
                                 return;
                             }
 
-                            audioEl.get(0).volume = volume;
+                            el.get(0).volume = volume;
                             volume += 0.05;
                         }, 1000);
-                    }, 5000);
+                    }, 3000);
                 }
             }
         };

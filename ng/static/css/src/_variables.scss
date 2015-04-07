@@ -1,4 +1,4 @@
-$mobile: 320px;
+$mobile: 420px;
 $tablet: 768px;
 $desktop: 1024px;
 
@@ -7,7 +7,7 @@ $min-desktop: $tablet + 1px;
 
 $mq-mobile: "only screen and (min-width: #{$mobile})";
 $mq-tablet: "only screen and (min-width: #{$min-tablet}) and (max-width: #{$tablet})";
-$mq-tablet: "only screen and (min-width: #{$min-desktop}) and (max-width: #{$desktop})";
+$mq-desktop: "only screen and (min-width: #{$min-desktop}) and (max-width: #{$desktop})";
 
 $mq-mobile-only: "only screen and (max-width: #{$min-tablet})";
 $mq-min-tablet: "only screen and (min-width: #{$min-tablet})";

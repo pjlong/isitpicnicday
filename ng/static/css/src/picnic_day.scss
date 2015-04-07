@@ -2,6 +2,20 @@
 @import "mixins";
 @import "base";
 
+.watermark {
+  background: white url(../../img/og_block_ca.png) no-repeat center / 200%;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+
+  @include mq(min-tablet) {
+    background-size: contain;
+  }
+}
+
 .picnic-day-message {
   box-sizing: border-box;
   color: #232323;

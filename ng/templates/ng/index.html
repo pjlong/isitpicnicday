@@ -42,9 +42,10 @@
       <h1><strong>No</strong>, it is not picnic day...</h1>
       <flip-clock countdown="picnicDayDate"></flip-clock>
     </div>
-    <pd-audio>
-      <source src="{% static 'audio/picnic_day_song.mp3' %}" type="audio/mpeg"></source>
-    </pd-audio>
+    <audio src="{% static 'audio/picnic_day_song.mp3' %}" type="audio/mpeg" loop pd-audio></audio>
+    {% verbatim %}
+    <div class="watermark" ng-style="{'opacity': bgOpacity()}"></div>
+    {% endverbatim %}
   </main>
   
   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
