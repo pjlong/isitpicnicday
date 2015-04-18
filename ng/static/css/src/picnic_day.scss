@@ -12,7 +12,8 @@
   z-index: -1;
 
   @include mq(min-tablet) {
-    background-size: contain;
+    background-size: 90%;
+    background-position: 50% 100%;
   }
 }
 
@@ -41,7 +42,7 @@
   display: inline-block;
   padding-top: 2em;
   width: auto;
-  
+
   @include mq(mobile-only) {
     margin-left: 2em;
     margin-right: 0;
@@ -81,7 +82,7 @@
 }
 
 .flip {
-  &-clock {  
+  &-clock {
     &-divider {
       @include mq(mobile-only) {
         .flip-clock-label {
@@ -102,7 +103,7 @@
           .flip-clock-label {
             right: -80px;
           }
-          
+
           &::before {
             content: "Minutes";
             font-size: 14px;
@@ -124,7 +125,7 @@
         &.minutes .flip-clock-label {
           right: -147px;
         }
-    
+
         &.seconds .flip-clock-label {
           right: -150px;
         }
