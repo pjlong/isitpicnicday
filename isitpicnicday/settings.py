@@ -93,5 +93,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
 
 STATICFILES_DIRS = (
-    '/ng/static/',
+    os.path.join(BASE_DIR, 'ng/static'),
 )
