@@ -6,7 +6,7 @@
         .directive('flipClock', flipClock)
         .directive('pdAudio', pdAudio)
         .factory('pageTitle', pageTitleFactory);
-    
+
     /* @ngInject */
     function appConfig ($locationProvider) {
         $locationProvider.html5Mode(true);
@@ -22,7 +22,7 @@
         /*
          * PD2015 Date
          */
-        $scope.picnicDayDate = new Date (2015, 03, 18, 0, 0, 0);
+        $scope.picnicDayDate = new Date (2016, 03, 16, 0, 0, 0);
         $scope.today = new Date();
         $scope.bgOpacity = bgOpacity;
         $scope.itsPicnicDay = itsPicnicDay;
@@ -37,10 +37,10 @@
          * Test url params to set current date to Picnic Day
          */
         function _routeQueryParams () {
-            if ("__itsPicnicDay" in $location.search() && 
+            if ("__itsPicnicDay" in $location.search() &&
                     $location.search().__itsPicnicDay == "true") {
                 $scope.today = $scope.picnicDayDate;
-            }            
+            }
         }
 
         function _daysUntilPicnicDay () {
@@ -122,7 +122,7 @@
 
     function pageTitleFactory () {
         var title = "Is it Picnic Day?";
-    
+
         return {
             get: function () { return title; },
             set: function (newTitle) { title = newTitle; }
