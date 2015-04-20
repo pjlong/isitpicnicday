@@ -26,110 +26,46 @@
   width: 100%;
 
   > h1 {
-    font-size: 48px;
-    font-weight: 700;
+    font-size: 45px;
+    font-weight: lighter;
+    margin-bottom: 0;
   }
 
   @include mq(min-desktop) {
 
     > h1 {
       font-size: 76px;
+      margin-bottom: .67em;
     }
   }
 }
 
-.flip-clock-wrapper {
+.timer-counter {
   display: inline-block;
-  padding-top: 2em;
-  width: auto;
+  font-size: 60px;
+  font-weight: 300;
+  margin-bottom: 12px;
+  margin-top: 6px;
+  min-width: 2em;
+  position: relative;
+  padding: 0 5rem;
 
-  @include mq(mobile-only) {
-    margin-left: 2em;
-    margin-right: 0;
-  }
-
-  ul {
-    @include mq(mobile-only) {
-      font-size: 55px;
-      height: 75px;
-      line-height: 75px;
-      width: 45px;
-    }
-
-    @include mq(min-tablet) {
-      font-size: 120px;
-      height: 135px;
-      line-height: 135px;
-      width: 95px;
-
-      li a div.up::after {
-        top: 70px;
-      }
-    }
-
-    li {
-      line-height: inherit;
-      a {
-        div {
-          font-size: inherit;
-          div.inn {
-            font-size: inherit;
-          }
-        }
-      }
-    }
+  @include mq(min-tablet) {
+    font-size: 120px;
+    padding: 0 1rem;
   }
 }
 
-.flip {
-  &-clock {
-    &-divider {
-      @include mq(mobile-only) {
-        .flip-clock-label {
-          font-size: 14px;
-          right: -72px;
-          top: -1.25em;
-        }
+.timer-unit {
+  font-size: 20px;
+  font-weight: 300;
+  left: 0;
+  bottom: -.6em;
+  position: absolute;
+  text-align: center;
+  width: 100%;
 
-        &.minutes {
-          visibility: hidden;
-
-          .flip-clock-label {
-            display: none;
-          }
-        }
-
-        &.seconds{
-          .flip-clock-label {
-            right: -80px;
-          }
-
-          &::before {
-            content: "Minutes";
-            font-size: 14px;
-            position: absolute;
-            top: -1.25em;
-            right: 50px;
-          }
-        }
-      }
-
-      @include mq(min-tablet) {
-        height: 125px;
-
-        .flip-clock-label {
-          font-size: 24px;
-          right: -132px;
-        }
-
-        &.minutes .flip-clock-label {
-          right: -147px;
-        }
-
-        &.seconds .flip-clock-label {
-          right: -150px;
-        }
-      }
-    }
+  @include mq(min-tablet) {
+    font-size: 30px;
   }
 }

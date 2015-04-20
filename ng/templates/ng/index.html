@@ -27,6 +27,7 @@
   <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
   <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{% static 'css/dist/isitpicnicday.css' %}">
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 </head>
@@ -66,7 +67,22 @@
     </div>
     <div class="picnic-day-message" ng-if="!itsPicnicDay()" ng-cloak>
       <h1><strong>No</strong>, it is not picnic day...</h1>
-      <flip-clock countdown="picnicDayDate"></flip-clock>
+      {% verbatim %}
+      <timer end-time="picnicDayDate">
+        <span class="timer-counter days">
+          {{ddays}} <span class="timer-unit">day{{daysS}}</span>
+        </span>
+        <span class="timer-counter hours">
+          {{hhours}} <span class="timer-unit">hour{{hoursS}}</span>
+        </span>
+        <span class="timer-counter minutes">
+          {{mminutes}} <span class="timer-unit">minute{{minutesS}}</span>
+        </span>
+        <span class="timer-counter seconds">
+          {{sseconds}} <span class="timer-unit">second{{secondsS}}</span>
+        </span>
+      </timer>
+      {% endverbatim %}
     </div>
     <audio src="{% static 'audio/picnic_day_song.mp3' %}" type="audio/mpeg" loop pd-audio></audio>
     {% verbatim %}

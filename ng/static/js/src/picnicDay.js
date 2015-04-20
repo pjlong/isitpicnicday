@@ -1,9 +1,8 @@
 (function () {
-    angular.module('picnicDayApp', ['ngRoute'])
+    angular.module('picnicDayApp', ['ngRoute', 'timer'])
         .config(appConfig)
         .run(appSetup)
         .controller('PicnicDayCtrl', PicnicDayCtrl)
-        .directive('flipClock', flipClock)
         .directive('pdAudio', pdAudio)
         .factory('pageTitle', pageTitleFactory);
 
@@ -68,23 +67,6 @@
                 $scope.today.getMonth() == $scope.picnicDayDate.getMonth() &&
                 $scope.today.getDate() == $scope.picnicDayDate.getDate();
         }
-    }
-
-    function flipClock () {
-        return {
-            restrict: 'AEC',
-            scope: {
-                countdown: "="
-            },
-            link: function (scope, el, attrs) {
-                var diff = scope.countdown - Date.now();
-
-                var flipClock = $(el).FlipClock(diff/1000, {
-                    clockFace: 'DailyCounter',
-                    countdown: true
-                });
-            }
-        };
     }
 
     /* @ngInject */
