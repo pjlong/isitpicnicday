@@ -17,20 +17,35 @@
     }
 
     /* @ngInject */
-    function PicnicDayCtrl ($scope, $location, pageTitle) {
+    function PicnicDayCtrl ($scope, $rootScope, $location, pageTitle) {
         /*
          * PD2015 Date
          */
-        $scope.picnicDayDate = new Date (2016, 03, 16, 0, 0, 0);
         $scope.today = new Date();
+        $scope.picnicDayDate = new Date (2016, 03, 16, 0, 0, 0);
         $scope.bgOpacity = bgOpacity;
-        $scope.itsPicnicDay = itsPicnicDay;
+        $scope.itsPicnicDay = false;
+        $scope.itsAlmostPicnicDay = false;
+        $scope.broadcastPicnicDay = broadcastPicnicDay;
 
-        _routeQueryParams();
+        $scope.$on('itsPicnicDay', function () {
+            $scope.itsPicnicDay = true;
+        });
+
+        init();
 
         //////////////////////////
         // Function Definitions //
         //////////////////////////
+
+        function init() {
+            //set up vars
+            _routeQueryParams();
+
+            if (bgOpacity() > 0) {
+                $scope.itsAlmostPicnicDay = true;
+            }
+        }
 
         /**
          * Test url params to set current date to Picnic Day
@@ -38,7 +53,19 @@
         function _routeQueryParams () {
             if ("__itsPicnicDay" in $location.search() &&
                     $location.search().__itsPicnicDay == "true") {
-                $scope.today = $scope.picnicDayDate;
+                $scope.picnicDayDate = $scope.today;
+            }
+
+            if ("__setDate" in $location.search()) {
+                var date = new Date($location.search().__setDate);
+
+                if (!isNaN(date.getTime())) {
+                    var diff = moment(date).diff($scope.picnicDayDate);
+
+                    $scope.picnicDayDate = moment($scope.today).subtract(diff, 'milliseconds').toDate();
+                }
+            } else {
+
             }
         }
 
@@ -59,13 +86,8 @@
             }
         }
 
-        /**
-         * checks Date, Month and Year for the date of Picnic Day 2015
-         */
-        function itsPicnicDay () {
-            return $scope.today.getFullYear() == $scope.picnicDayDate.getFullYear() &&
-                $scope.today.getMonth() == $scope.picnicDayDate.getMonth() &&
-                $scope.today.getDate() == $scope.picnicDayDate.getDate();
+        function broadcastPicnicDay () {
+            $rootScope.$broadcast('itsPicnicDay');
         }
     }
 
