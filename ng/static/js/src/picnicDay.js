@@ -3,6 +3,7 @@
         .config(appConfig)
         .run(appSetup)
         .controller('PicnicDayCtrl', PicnicDayCtrl)
+        .controller('HypeCtrl', HypeCtrl)
         .directive('pdAudio', pdAudio)
         .factory('pageTitle', pageTitleFactory);
 
@@ -17,11 +18,12 @@
                 controllerAs: '$vm',
                 templateUrl: '/ng/main.html'
             })
-/*            .state('hype', {
+            .state('hype', {
                 url: '/hype',
                 controller: 'HypeCtrl',
-                controllerAs: '$vm'
-            });*/
+                controllerAs: '$vm',
+                templateUrl: '/ng/hype.html'
+            });
     }
 
     /* @ngInject */
@@ -100,6 +102,11 @@
         function broadcastPicnicDay () {
             $rootScope.$broadcast('itsPicnicDay');
         }
+    }
+
+    /* @ngInject */
+    function HypeCtrl () {
+
     }
 
     /* @ngInject */
