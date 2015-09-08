@@ -60,39 +60,11 @@
 
   Proud members of the UC Davis CAMB and CAAMB
   -->
-
-  <main ng-controller="PicnicDayCtrl">
-    <div class="picnic-day-message" ng-if="itsPicnicDay" ng-cloak>
-      <h1>IT'S PICNIC DAY!!!!!!!</h1>
-    </div>
-    <div class="picnic-day-message" ng-if="!itsPicnicDay" ng-cloak>
-      <h1><strong>No</strong>, it is not picnic day...</h1>
-      {% verbatim %}
-      <timer end-time="picnicDayDate" finish-callback="broadcastPicnicDay()">
-        <span class="timer-counter days">
-          {{ddays}} <span class="timer-unit">day{{daysS}}</span>
-        </span>
-        <span class="timer-counter hours">
-          {{hhours}} <span class="timer-unit">hour{{hoursS}}</span>
-        </span>
-        <span class="timer-counter minutes">
-          {{mminutes}} <span class="timer-unit">minute{{minutesS}}</span>
-        </span>
-        <span class="timer-counter seconds">
-          {{sseconds}} <span class="timer-unit">second{{secondsS}}</span>
-        </span>
-      </timer>
-      {% endverbatim %}
-    </div>
-    <audio src="{% static 'audio/picnic_day_song.mp3' %}" type="audio/mpeg" loop pd-audio ng-if="itsAlmostPicnicDay"></audio>
-    {% verbatim %}
-    <div class="watermark" ng-style="{'opacity': bgOpacity()}"></div>
-    {% endverbatim %}
-  </main>
+  <main ui-view></main>
 
   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js"></script>
+  <script src="//cdnjs.buttflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
   <script src="{% static 'js/dist/isitpicnicday.js' %}"></script>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

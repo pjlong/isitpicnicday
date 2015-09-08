@@ -1,5 +1,5 @@
 (function () {
-    angular.module('picnicDayApp', ['ngRoute', 'timer'])
+    angular.module('picnicDayApp', ['ui.router', 'timer'])
         .config(appConfig)
         .run(appSetup)
         .controller('PicnicDayCtrl', PicnicDayCtrl)
@@ -7,8 +7,21 @@
         .factory('pageTitle', pageTitleFactory);
 
     /* @ngInject */
-    function appConfig ($locationProvider) {
+    function appConfig ($stateProvider, $locationProvider) {
         $locationProvider.html5Mode(true);
+
+        $stateProvider
+            .state('main', {
+                url: '/',
+                controller: 'PicnicDayCtrl',
+                controllerAs: '$vm',
+                templateUrl: '/ng/main.html'
+            })
+/*            .state('hype', {
+                url: '/hype',
+                controller: 'HypeCtrl',
+                controllerAs: '$vm'
+            });*/
     }
 
     /* @ngInject */
