@@ -65,7 +65,7 @@
          */
         function _routeQueryParams () {
             if ("__itsPicnicDay" in $location.search() &&
-                    $location.search().__itsPicnicDay == "true") {
+                    $location.search().__itsPicnicDay === "true") {
                 $scope.picnicDayDate = $scope.today;
             }
 
@@ -77,8 +77,6 @@
 
                     $scope.picnicDayDate = moment($scope.today).subtract(diff, 'milliseconds').toDate();
                 }
-            } else {
-
             }
         }
 

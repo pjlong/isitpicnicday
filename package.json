@@ -4,7 +4,7 @@
   "description": "Is It Picnic Day?!",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "python manage.py runserver_plus"
   },
   "author": "Phillip Long",
   "license": "BSD-2-Clause",
