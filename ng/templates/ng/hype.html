@@ -1,2 +1,7 @@
 {% load static %}
+<div class="hype-bg text-center" ng-class="{
+	'no-animation': $vm.stopAnimation
+}" ng-click="$vm.stopAnimation = !$vm.stopAnimation">
+	<span class="hidden-sm">Click</span><span class="visible-i-sm">Tap</span> to <span ng-hide="$vm.stopAnimation">Stop</span><span ng-show="$vm.stopAnimation">Start</span> Party Mode
+</div>
 <audio src="{% static 'audio/picnic_day_song.mp3' %}" type="audio/mpeg" loop pd-audio delay="0" build-up="0"></audio>

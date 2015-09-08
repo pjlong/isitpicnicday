@@ -69,3 +69,70 @@
     font-size: 30px;
   }
 }
+
+.hype-bg {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  animation: bgHype .69s infinite;
+}
+
+.no-animation {
+  animation: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@keyframes bgHype {
+  0%, 100% {
+    background-color: $white;
+  }
+
+  33% {
+    background-color: $caBlue;
+  }
+
+  66% {
+    background-color: $caGold;
+  }
+}
+
+@media only screen and (min-device-width: 0px) and (max-device-width: 720px) {
+  .visible-b-sm,
+  .visible-sm {
+    display: block !important;
+  }
+
+  .visible-i-sm {
+    display: inline !important;
+  }
+
+  .visible-ib-sm {
+    display: inline-block !important;
+  }
+
+  .hidden-sm {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-device-width: 721px) {
+
+  .visible-b-sm,
+  .visible-sm {
+    display: none !important;
+  }
+
+  .visible-i-sm {
+    display: none !important;
+  }
+
+  .visible-ib-sm {
+    display: none !important;
+  }
+}
