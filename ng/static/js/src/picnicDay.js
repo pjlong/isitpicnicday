@@ -54,6 +54,7 @@
         //////////////////////////
 
         function init() {
+            pageTitle.set('Is it Picnic Day?');
             //set up vars
             _routeQueryParams();
 
@@ -105,8 +106,13 @@
     }
 
     /* @ngInject */
-    function HypeCtrl () {
+    function HypeCtrl (pageTitle) {
 
+        init();
+
+        function init () {
+            pageTitle.set('Picnic Day HYPE!');
+        }
     }
 
     /* @ngInject */
