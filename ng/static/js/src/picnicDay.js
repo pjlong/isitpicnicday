@@ -113,13 +113,40 @@
     function pdAudio ($interval, $timeout) {
         return {
             restrict: 'A',
+            scope: {
+                buildUp: '@',
+                delay: '@'
+            },
             link: function (scope, el, attrs, ctrl, transclude) {
-                console.log('audio');
                 var volume = 0,
                     volIncrease;
 
-                el[0].volume = 0;
-                el[0].oncanplaythrough = startMadness;
+                init();
+
+                function init () {
+                    if (scope.buildUp === undefined) {
+                        scope.buildUp = 1000;
+                    }
+
+                    if (scope.delay === undefined) {
+                        scope.delay = 3000;
+                    }
+
+                    scope.buildUp = parseInt(scope.buildUp);
+                    scope.delay = parseInt(scope.delay);
+
+                    if (scope.delay === 0) {
+                        scope.delay = 1;
+                    }
+
+                    if (scope.buildUp === 0) {
+                        el[0].volume = 1;
+                    } else {
+                        el[0].volume = 0;
+                    }
+
+                    el[0].oncanplaythrough = startMadness;
+                }
 
                 function startMadness () {
                     var _this = this;
@@ -127,16 +154,18 @@
                     $timeout(function () {
                         _this.play();
 
-                        volIncrease = $interval(function () {
-                            if (volume >= 1) {
-                                $interval.cancel(volIncrease);
-                                return;
-                            }
+                        if (scope.buildUp > 0) {
+                            volIncrease = $interval(function () {
+                                if (volume >= 1) {
+                                    $interval.cancel(volIncrease);
+                                    return;
+                                }
 
-                            el.get(0).volume = volume;
-                            volume += 0.05;
-                        }, 1000);
-                    }, 3000);
+                                el.get(0).volume = volume;
+                                volume += 0.05;
+                            }, scope.buildUp);
+                        }
+                    }, scope.delay);
                 }
             }
         };
